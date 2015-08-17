@@ -17,6 +17,7 @@ define(function(require, exports, module) {
     var tab = new Class({
         __construct: function( options ) {
             this.options = $.extend(true, {
+                wrap: '[uTag="tabWrap"]',
                 // 幻灯片容器下的轮播大图容器
                 viewWrap: '[uTag="tabViewWrap"]',
                 // 幻灯片容器下的轮播小图容器
@@ -30,6 +31,9 @@ define(function(require, exports, module) {
                 // 自动播放时间间隔
                 delay: 2000
             }, options);
+            this._guid = + new Date();
+            this._parent = $( this.options.wrap );
+            this._parent.data('guid', this._guid);
         },
         /**
          * 初始化
@@ -38,13 +42,13 @@ define(function(require, exports, module) {
         init: function( ) {
 
             /* console.log( 'tab_init' );*/
-            console.log( this.options.menuWrap );
             // 自动播放的定时器对象
             this.timer = null;
             // 自动播放
             this.autoPlay();
             // 初始化菜单事件
             this.initMenuEvt();
+
         },
         /**
          * 自动播放
@@ -75,7 +79,7 @@ define(function(require, exports, module) {
             var me = this;
             var options = this.options;
             // 鼠标悬停暂停播放清除定时器，鼠标立刻开启定时器
-            $(options.menuWrap).parent().hover(function() {
+            me._parent.find(options.menuWrap).parent().hover(function() {
                 clearInterval(me.timer);
             }, function() {
                 me.autoPlay();
@@ -88,7 +92,7 @@ define(function(require, exports, module) {
          */
         getActiveElem: function() {
             var options = this.options;
-            var children = $(options.menuWrap).children();
+            var children = me._parent.find(options.menuWrap).children();
             var curIndex = 0;
             var curElem = $();
             $.each(children, function(i, v) {
@@ -108,12 +112,12 @@ define(function(require, exports, module) {
             var me = this;
             var options = me.options;
             // 绑定选项卡菜单事件
-            console.log( $(options.menuWrap).length );
-            $(options.menuWrap).children().on(options.events, function( e ) {
+            me._parent.find(options.menuWrap).children().on(options.events, function( e ) {
                 e.preventDefault();
                 // 调用切换方法
                 console.log('click');
                 me.switchs(this);
+                me.fire('__tab', $( this ).index() );
             });
         },
         /**
@@ -152,7 +156,7 @@ define(function(require, exports, module) {
             // 获取当前元素节点的索引值
             var index = $(elem).index();
             // 获取所有内容节点
-            var children = $(options.viewWrap).children();
+            var children = this._parent.find(options.viewWrap).children();
             // 隐藏所有的内容
             children.hide();
             // 显示相应内容

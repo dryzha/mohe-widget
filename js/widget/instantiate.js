@@ -39,7 +39,6 @@ define(function(require, exports, module) {
             }
             // 实例化类
             else{
-                console.log( new W[type](options).init );
                 W[type] && new W[type](options).init(element) ;
 
             }

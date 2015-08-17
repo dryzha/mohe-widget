@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="../css/tab.css" />
 </head>
 <body>
-<div class="t_conswitch" data-w-type="Tab" data-w-options='{"menuWrap":".tab_txt","viewWrap":".video_bd","activeCls":"current"}'>
+<div class="t_conswitch" data-w-type="Tab" id="tab1" data-w-options='{"wrap":"#tab1","menuWrap":".tab_txt","viewWrap":".video_bd","activeCls":"current"}'>
 	<ul class="tab_txt" >
 		<li class="current"><a href="#">tab1</a></li>
 		<li><a href="#">tab2</a></li>
@@ -17,7 +17,7 @@
 			<li class="l_video">
 				content1
 			</li>
-					
+
 		</ul>
 		<!--第一个标签内容 end-->
 		<!--第二个标签内容 begin-->
@@ -25,10 +25,36 @@
 			<li class="l_video">
                 content2
 			</li>
-					
+
 		</ul>
-		<!--第二个标签内容 end-->	
+		<!--第二个标签内容 end-->
 	</div>
+</div>
+
+<div class="t_conswitch" data-w-type="Tab_ext" id="tab2" data-w-options='{"wrap":"#tab2","menuWrap":".tab_txt","viewWrap":".video_bd","activeCls":"current"}'>
+    <ul class="tab_txt" >
+        <li class="current"><a href="#">tab_ext1</a></li>
+        <li><a href="#">tab_ext2</a></li>
+    </ul>
+    <div class="video_bd">
+        <!--第一个标签内容 begin-->
+        <ul class="video_list cf" >
+            <li class="l_video">
+                tab_ext_content1
+            </li>
+
+        </ul>
+        <!--第一个标签内容 end-->
+        <!--第二个标签内容 begin-->
+        <ul class="video_list cf" style="display:none;" >
+            <li class="l_video">
+                tab_ext_content2
+            </li>
+
+        </ul>
+        <!--第二个标签内容 end-->
+    </div>
+    <div id="showtext">未点击</div>
 </div>
 </body>
 </html>
