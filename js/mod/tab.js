@@ -161,6 +161,5 @@ define(function(require, exports, module) {
             return this;
         }
     })
-    W.Tab = tab;
-    exports.Tab = W.Tab;
+    exports.Tab = W.Tab = tab ;
 });
