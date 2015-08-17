@@ -10,36 +10,34 @@
  * 无任何动态效果
  */
 define(function(require, exports, module) {
-    var W = require('../widget/widget').W;
+    var W = require('../widget/widget').W,
+        Class = require('../class/class');
 
-    /**
-     * 选项卡
-     * @param {[Object]} options [配置参数]
-     */
-    W.Tab = function(options) {
-        this.options = $.extend(true, {
-            // 幻灯片容器下的轮播大图容器
-            viewWrap: '[uTag="tabViewWrap"]',
-            // 幻灯片容器下的轮播小图容器
-            menuWrap: '[uTag="tabMenuWrap"]',
-            // menu焦点类名
-            activeCls: 'on',
-            // 切换的事件名
-            events: 'click',
-            // 自动播放
-            autoPlay: false,
-            // 自动播放时间间隔
-            delay: 2000
-        }, options);
-    }
-    W.Tab.prototype = {
+
+    var tab = new Class({
+        __construct: function( options ) {
+            this.options = $.extend(true, {
+                // 幻灯片容器下的轮播大图容器
+                viewWrap: '[uTag="tabViewWrap"]',
+                // 幻灯片容器下的轮播小图容器
+                menuWrap: '[uTag="tabMenuWrap"]',
+                // menu焦点类名
+                activeCls: 'on',
+                // 切换的事件名
+                events: 'click',
+                // 自动播放
+                autoPlay: false,
+                // 自动播放时间间隔
+                delay: 2000
+            }, options);
+        },
         /**
          * 初始化
          * @return {[undefined]} [undefined]
          */
         init: function( ) {
 
-           /* console.log( 'tab_init' );*/
+            /* console.log( 'tab_init' );*/
             console.log( this.options.menuWrap );
             // 自动播放的定时器对象
             this.timer = null;
@@ -162,6 +160,7 @@ define(function(require, exports, module) {
             // 返回this
             return this;
         }
-    }
+    })
+    W.Tab = tab;
     exports.Tab = W.Tab;
 });
