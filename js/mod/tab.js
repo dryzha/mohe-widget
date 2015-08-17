@@ -11,26 +11,42 @@
  */
 define(function(require, exports, module) {
     var W = require('../widget/widget').W;
+
     /**
      * 选项卡
      * @param {[Object]} options [配置参数]
      */
     W.Tab = function(options) {
-
+        this.options = $.extend(true, {
+            // 幻灯片容器下的轮播大图容器
+            viewWrap: '[uTag="tabViewWrap"]',
+            // 幻灯片容器下的轮播小图容器
+            menuWrap: '[uTag="tabMenuWrap"]',
+            // menu焦点类名
+            activeCls: 'on',
+            // 切换的事件名
+            events: 'click',
+            // 自动播放
+            autoPlay: false,
+            // 自动播放时间间隔
+            delay: 2000
+        }, options);
     }
     W.Tab.prototype = {
         /**
          * 初始化
          * @return {[undefined]} [undefined]
          */
-        init: function() {
-           /* console.log( 'tab_init' );
+        init: function( ) {
+
+           /* console.log( 'tab_init' );*/
+            console.log( this.options.menuWrap );
             // 自动播放的定时器对象
             this.timer = null;
             // 自动播放
             this.autoPlay();
             // 初始化菜单事件
-            this.initMenuEvt();*/
+            this.initMenuEvt();
         },
         /**
          * 自动播放
@@ -94,6 +110,7 @@ define(function(require, exports, module) {
             var me = this;
             var options = me.options;
             // 绑定选项卡菜单事件
+            console.log( $(options.menuWrap).length );
             $(options.menuWrap).children().on(options.events, function( e ) {
                 e.preventDefault();
                 // 调用切换方法
