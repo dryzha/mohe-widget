@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>t_conswitch</title>
+<link rel="stylesheet" type="text/css" href="../css/tab.css" />
+</head>
+<body>
+<div class="t_conswitch" data-w-type="Tab" data-w-options='{"menuWrap":".tab_txt","viewWrap":".video_bd","activeCls":"current"}'>
+	<ul class="tab_txt" >
+		<li class="current"><a href="#">tab1</a></li>
+		<li><a href="#">tab2</a></li>
+	</ul>
+	<div class="video_bd">
+		<!--第一个标签内容 begin-->
+		<ul class="video_list cf" >
+			<li class="l_video">
+				content1
+			</li>
+					
+		</ul>
+		<!--第一个标签内容 end-->
+		<!--第二个标签内容 begin-->
+		<ul class="video_list cf" style="display:none;" >
+			<li class="l_video">
+                content2
+			</li>
+					
+		</ul>
+		<!--第二个标签内容 end-->	
+	</div>
+</div>
+</body>
+</html>
+
+<script src="../lib/jquery-1.10.2.min.js"></script>
+<script src="../lib/sea.2.1.0.js"></script>
+<script type="text/javascript">
+	seajs.use("../js/web/tab");
+</script>
